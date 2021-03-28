@@ -46,7 +46,10 @@
     width: 60%;
   }
   .searchInput {
-    font-size: 1rem;
+    font-size: 0.8rem;
+  }
+  .searchInput::placeholder {
+    font-weight: 300;
   }
 }
 @media (max-width: 520px) {

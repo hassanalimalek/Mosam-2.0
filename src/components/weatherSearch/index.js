@@ -46,7 +46,7 @@ function Index(props) {
     return (
         <div className={styles.searchBar_wrapper}>
             <div className={styles.searchBar}>
-                <input value={searchVal} placeholder="Enter City Name to get Weather Updates.." onChange={(e)=>{setSearchVal(e.target.value)}} className={styles.searchInput}/>
+                <input value={searchVal} placeholder="Enter a City Name to get Weather Updates.." onChange={(e)=>{setSearchVal(e.target.value)}} className={styles.searchInput}/>
                 <span onClick={search} className={styles.searchI} ><BiSearchAlt className={styles.searchIcon}/></span>
             </div>
            

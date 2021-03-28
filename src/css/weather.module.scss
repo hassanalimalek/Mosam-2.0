@@ -139,7 +139,8 @@ $mainTransition: all 0.3s linear;
 }
 
 // Loader Wrapper
-.loaderWrapper {
+.loaderWrapper,
+.errorWrapper {
   height: 70vh;
   display: grid;
   place-items: center;
@@ -148,8 +149,9 @@ $mainTransition: all 0.3s linear;
 .errorMsgWrapper {
   color: #fff;
 }
-.loaderWrapper {
+.errorWrapper {
   padding: 0.5rem;
+  height: 60vh;
   h1 {
     margin-bottom: 0.4rem;
     font-size: 2.5rem;
@@ -193,14 +195,14 @@ $mainTransition: all 0.3s linear;
     width: 100%;
   }
   //   Err Msg Wrapper
-  .loaderWrapper {
+  .errorWrapper {
     padding: 0.5rem;
     h1 {
-      margin-bottom: 0.2rem;
-      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      font-size: 1.6rem;
     }
     h3 {
-      font-size: 1.25rem;
+      font-size: 1rem;
     }
   }
 }

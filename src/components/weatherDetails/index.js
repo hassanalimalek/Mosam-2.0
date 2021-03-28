@@ -56,7 +56,7 @@ function Index(props) {
     `;
     if(props.weatherDetails.errH1){
         return (
-            <div className={styles.loaderWrapper}>
+            <div className={styles.errorWrapper}>
                 <div className={styles.errMsgWrapper} >
                    <h1 className={styles.errMsgTitle}>{props.weatherDetails.errH1}</h1>
                    <h3>{props.weatherDetails.errP}</h3>
@@ -143,7 +143,6 @@ function Index(props) {
                                 <h3  className={styles.mb_halfRem}>{sunrise}</h3>
                                 <h3>Sunrise</h3>
                             </div>
-                            {/* <h4>Wind Mill Img</h4> */}
                             
                         </div>
                         <div className={styles.weather_details_secondDiv}>
