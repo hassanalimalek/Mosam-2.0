@@ -6,7 +6,6 @@ import { BiSearchAlt } from 'react-icons/bi'
 function Index(props) {
 
     let [searchVal,setSearchVal] = useState('');
-    let [weatherDetails,setWeatherDetails] = useState('');
    
     let search = async ()=>{
         console.log(searchVal)
@@ -14,7 +13,7 @@ function Index(props) {
         let apiKey = '526d6c2fa8f55fc0657ee2a71c2dfc65';
         let cnt = '7'
         let response = await fetch('https://api.openweathermap.org/data/2.5/weather?q=' + searchVal+ '&cnt='+cnt+'&appid=' + apiKey + '&units=metric') 
-        if(response.status!=200){
+        if(response.status!==200){
             let dataObj={
                 errH1:"Sorry, we found no match for your location",
                 errP:"Try to search for another major city in the same area."

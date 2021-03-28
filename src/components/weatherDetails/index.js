@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React from 'react'
 // Date fns
 import { format } from 'date-fns';
 import styles from '../../css/weather.module.scss'
@@ -10,7 +10,6 @@ import rainDropImg from '../../assets/images/rainDrop.png'
 import hazeImg from '../../assets/images/haze.jpg'
 import rainImg from '../../assets/images/rain.jpg'
 import cloudImg from '../../assets/images/clouds.jpg'
-import darkCloudImg from '../../assets/images/darkClouds.jpg'
 import snowImg from '../../assets/images/snow.jpg'
 import nightSkyImg from '../../assets/images/nightSky.jpg'
 import sunnyImg from '../../assets/images/sunny.jpg'
@@ -49,8 +48,7 @@ const responsive = {
 
 function Index(props) {
    
-   
-    let [color, setColor] = useState("#111");
+    let color = "#111"
     const override = css`
     display: block;
     margin: 0 auto;
@@ -111,7 +109,7 @@ function Index(props) {
                         <h4 className={styles.forecast_weatherTemp}>{temp}</h4>
                         <i className={cx(`wi wi-owm-${day.weather[0].id}`,styles.weather_icon_2)}/>
                         <div>
-                              <span><img className={styles.rainDropImg} src={rainDropImg}/> <span className={styles.forecast_weatherChance}>{rain_chance} %</span></span>
+                              <span><img alt="rain drop img" className={styles.rainDropImg} src={rainDropImg}/> <span className={styles.forecast_weatherChance}>{rain_chance} %</span></span>
                         </div>
                     </div>)
             })
@@ -155,7 +153,7 @@ function Index(props) {
                             </div>
                             <div>
                                 <h3  className={styles.mb_halfRem}>{wind} mph</h3>
-                                <h3 className={styles.windmillImgWrapper}><img className={styles.windmillImg} src={windmillImg}></img></h3>
+                                <h3 className={styles.windmillImgWrapper}><img alt="weather img" className={styles.windmillImg} src={windmillImg}></img></h3>
                             </div>
                             <div>
                                 <h3  className={styles.mb_halfRem}>{sunset}</h3>
@@ -198,7 +196,7 @@ function Index(props) {
             
         )
     }
-    if(props.loading == 'true'){
+    if(props.loading === 'true'){
         return(
             <div className={styles.loaderWrapper}>
                   <MoonLoader color={color} loading={props} css={override} size={60} />
@@ -208,7 +206,7 @@ function Index(props) {
     }
     else{
         return (
-            <h1></h1>
+                null
         )
     }
    
