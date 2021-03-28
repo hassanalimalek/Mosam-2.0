@@ -1,0 +1,206 @@
+// Weather Component Styles
+// Var's
+$light_shadow: 2px 5px 3px 0 rgba(0, 0, 0, 0.25);
+$darkShadow: 4px 10px 3px 0 rgba(0, 0, 0, 0.5);
+$mainTransition: all 0.3s linear;
+
+.weather {
+  margin: 4rem 2rem;
+}
+.weather_wrapper {
+  width: 90%;
+  padding: 0.5rem;
+  margin: auto;
+  //   background-color: #fff;
+  //   color: #111;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: $light_shadow;
+}
+// Weather Basic Details
+.weather_basic {
+  //   border: 1px solid red;
+  flex: 1;
+}
+
+.weather_city {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+.weather_date {
+  font-size: 2rem;
+  font-weight: 300;
+}
+.weather_temperature {
+  font-size: 2.5rem;
+}
+.weather_description {
+  font-size: 2rem;
+  font-weight: 300;
+}
+.iconTemp_wrapper {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2rem;
+  //   border: 1px solid green;
+}
+.weather_icon {
+  font-size: 3.5rem;
+  align-self: center;
+}
+
+// Weather Complete Details
+.weather_details {
+  margin: 1rem;
+  background-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
+  flex: 1;
+  padding: 0.5rem;
+  border-radius: 10px;
+  text-align: center;
+  align-self: center;
+}
+.weather_details_firstDiv {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}
+.weather_details_secondDiv {
+  display: flex;
+  justify-content: space-around;
+  //   border: 1px solid rgb(60, 0, 128);
+}
+.mb_halfRem {
+  margin-bottom: 0.5rem;
+}
+.windmillImgWrapper {
+  //   background-color: #fff;
+  //   border-radius: 50%;
+}
+.windmillImg {
+  width: 50px;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+// Forecast Section
+.forecast_wrapper {
+  margin: 3rem 0;
+  color: #fff;
+  width: 90%;
+  padding: 0.5rem;
+  margin: 3rem auto;
+  text-align: center;
+}
+.forecast_sevenDayTitle {
+  margin-bottom: 1rem;
+}
+
+.forecast_single {
+  //   border: 1px solid purple;
+  text-align: center;
+  //   flex: 1;
+  box-shadow: $light_shadow;
+  transition: $mainTransition;
+  &:hover {
+    box-shadow: $darkShadow;
+  }
+  padding: 1rem;
+  margin: 1rem 0;
+  font-weight: 300;
+  //   border-radius: 10px;
+}
+
+.weather_icon_2 {
+  font-size: 2rem;
+  margin: 1rem 0;
+  align-self: center;
+}
+.forecast_date {
+  font-size: 1.4rem;
+}
+.rainDropImg {
+  width: 20px;
+  //   border-radius: 50%;
+}
+.forecast_weatherTemp {
+  margin-top: 1rem;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+.forecast_weatherChance {
+  font-weight: 400;
+}
+.forecast_weatherDetails {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+// Loader Wrapper
+.loaderWrapper {
+  height: 70vh;
+  display: grid;
+  place-items: center;
+}
+// Error Message
+.errorMsgWrapper {
+  color: #fff;
+}
+.loaderWrapper {
+  padding: 0.5rem;
+  h1 {
+    margin-bottom: 0.4rem;
+    font-size: 2.5rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
+}
+.errorMsgTitle {
+  margin-bottom: 0.3rem;
+}
+
+// Media Queries
+@media (max-width: 520px) {
+  .weather {
+    margin: 2rem 1rem;
+  }
+  .weather_wrapper {
+    width: 100%;
+    flex-direction: column;
+  }
+  .weather_details {
+    align-self: auto;
+  }
+  .weather_city {
+    font-size: 2.5rem;
+  }
+  .weather_date {
+    font-size: 1.5rem;
+  }
+  .weather_temperature {
+    font-size: 2rem;
+  }
+  .weather_description {
+    font-size: 1.5rem;
+  }
+  .weather_icon {
+    font-size: 2.5rem;
+  }
+  .forecast_wrapper {
+    width: 100%;
+  }
+  //   Err Msg Wrapper
+  .loaderWrapper {
+    padding: 0.5rem;
+    h1 {
+      margin-bottom: 0.2rem;
+      font-size: 2rem;
+    }
+    h3 {
+      font-size: 1.25rem;
+    }
+  }
+}

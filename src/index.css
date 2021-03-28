@@ -1,0 +1,34 @@
+/* Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Rajdhani:wght@500&display=swap");
+
+/* Global */
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Lato", sans-serif;
+  background: url("../src/assets/images/bgImg.jpg") no-repeat center center
+    fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+/* Header Styles */
+.header {
+  margin: 0.5rem;
+  color: #fff;
+}
+.header_wrapper {
+  display: flex;
+}
+.header_title {
+  font-size: 2.6rem;
+  font-family: "Rajdhani", sans-serif;
+}
+.header_icon {
+  margin-left: 0.5rem;
+  align-self: flex-end;
+}
