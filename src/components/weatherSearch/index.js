@@ -2,6 +2,7 @@ import React from 'react'
 import {useState} from 'react'
 import styles from '../../css/searchBar.module.scss'
 import { BiSearchAlt } from 'react-icons/bi'
+import defaultBg from '../../assets/images/bgImg.jpg'
 
 function Index(props) {
 
@@ -45,11 +46,11 @@ function Index(props) {
 
     return (
         <div className={styles.searchBar_wrapper}>
+            <style>{`body {background:url(${defaultBg}) no-repeat center/cover fixed }`}</style>
             <div className={styles.searchBar}>
                 <input value={searchVal} placeholder="Enter a City Name to get Weather Updates.." onChange={(e)=>{setSearchVal(e.target.value)}} className={styles.searchInput}/>
                 <span onClick={search} className={styles.searchI} ><BiSearchAlt className={styles.searchIcon}/></span>
             </div>
-           
         </div>
     )
 }

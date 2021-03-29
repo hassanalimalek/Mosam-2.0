@@ -1,0 +1,14 @@
+.loaderContainer {
+  /* position: fixed;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: #fff;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%); */
+
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  place-items: center;
+}
