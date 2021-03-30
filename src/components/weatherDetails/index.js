@@ -81,13 +81,6 @@ function Index(props) {
       </div>
     );
   }
-  if (props.weatherDetails.noInternet) {
-    return (
-      <div className={styles.noNetImgWrapper}>
-        <img alt="errorImg" className={styles.noNetImg} src={noNetImg}></img>
-      </div>
-    );
-  }
   if (props.weatherDetails) {
     let wObj = props.weatherDetails;
     let city = `${wObj.name},${wObj.sys.country}`;

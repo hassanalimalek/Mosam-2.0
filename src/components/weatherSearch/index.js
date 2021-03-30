@@ -56,6 +56,12 @@ function Index(props) {
     });
   };
 
+  let enterSubmit = (event) => {
+    if (event.keyCode === 13) {
+      search();
+    }
+  };
+
   return (
     <div className={styles.searchBar_wrapper}>
       <style>{`body {background:url(${defaultBg}) no-repeat center/cover fixed }`}</style>
@@ -66,6 +72,7 @@ function Index(props) {
           onChange={(e) => {
             setSearchVal(e.target.value);
           }}
+          onKeyDown={(e) => enterSubmit(e)}
           className={styles.searchInput}
         />
         <span onClick={search} className={styles.searchI}>
