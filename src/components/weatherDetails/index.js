@@ -14,7 +14,6 @@ import snowImg from '../../assets/images/snow.jpg';
 import nightSkyImg from '../../assets/images/nightSky.jpg';
 import sunnyImg from '../../assets/images/sunny.jpg';
 import defaultImg from '../../assets/images/bgImg.jpg';
-import noNetImg from '../../assets/images/errorImg.png';
 
 // React Loader
 import {css} from '@emotion/core';
