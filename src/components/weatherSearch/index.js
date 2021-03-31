@@ -1,22 +1,56 @@
 import React from 'react';
-import {useState} from 'react';
+import {useState, useRef, useEffect} from 'react';
 import styles from '../../css/searchBar.module.scss';
 import {BiSearchAlt} from 'react-icons/bi';
 import defaultBg from '../../assets/images/bgImg.jpg';
+import iso3311a2 from 'iso-3166-1-alpha-2';
 
 function Index(props) {
   let [searchVal, setSearchVal] = useState('');
+
+  // Google Places
+  let autoCompleteInput = useRef();
+  let autoComplete = null;
+  useEffect(() => {
+    // eslint-disable-next-line
+    autoComplete = new window.google.maps.places.Autocomplete(
+      autoCompleteInput.current,
+      {types: ['(cities)']}
+    );
+    autoComplete.addListener('place_changed', handlePlaceChanged);
+  }, []);
+  // Places Input Change Listener
+  let handlePlaceChanged = () => {
+    const place = autoComplete.getPlace();
+    setSearchVal(place.formatted_address);
+  };
 
   //   Weather Search
   let search = async () => {
     props.setLoading(true);
     let apiKey = '526d6c2fa8f55fc0657ee2a71c2dfc65';
-    let cnt = '7';
+    // let cnt = '7';
+    let city = searchVal.slice(0, searchVal.indexOf(','));
+    let country = searchVal
+      .slice(searchVal.lastIndexOf(',') + 1, searchVal.length)
+      .trim();
+    let countryCode = '';
+    // Google Places Already Provides Short Notation of Some Countries
+    // -- > USA for united states of america
+    // That is why checking if lenght is greater then 3 then get the ISO alpha 2 code.
+    if (country.length > 3) {
+      countryCode = iso3311a2.getCode(country).toLowerCase();
+    } else {
+      countryCode = country.toLowerCase();
+      if (countryCode === 'usa') {
+        countryCode = 'us';
+      }
+    }
+    console.log(city);
+    console.log(countryCode);
     await fetch(
       'https://api.openweathermap.org/data/2.5/weather?q=' +
-        searchVal +
-        '&cnt=' +
-        cnt +
+        `${city},${countryCode}` +
         '&appid=' +
         apiKey +
         '&units=metric'
@@ -51,15 +85,16 @@ function Index(props) {
         setTimeout(() => {
           props.setWeather(dataObj);
           props.setLoading(false);
-        }, 1500);
+        }, 200);
       }
     });
   };
 
+  // Enter to submit
   let enterSubmit = (event) => {
-    if (event.keyCode === 13) {
-      search();
-    }
+    // if (event.keyCode === 13) {
+    //   search();
+    // }
   };
 
   return (
@@ -68,6 +103,8 @@ function Index(props) {
       <div className={styles.searchBar}>
         <input
           value={searchVal}
+          ref={autoCompleteInput}
+          id="autoComplete"
           placeholder="Enter a City Name to get Weather Updates.."
           onChange={(e) => {
             setSearchVal(e.target.value);
