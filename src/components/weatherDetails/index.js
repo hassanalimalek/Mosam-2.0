@@ -1,54 +1,54 @@
-import React from 'react';
+import React from "react";
 // Date fns
-import {format} from 'date-fns';
-import styles from '../../css/weather.module.scss';
-import cx from 'classnames';
-import '../../css/weather-icons.css';
-import windmillImg from '../../assets/images/windmill.gif';
-import rainDropImg from '../../assets/images/rainDrop.png';
+import { format } from "date-fns";
+import styles from "../../css/weather.module.scss";
+import cx from "classnames";
+import "../../css/weather-icons.css";
+import windmillImg from "../../assets/images/windmill.gif";
+import rainDropImg from "../../assets/images/rainDrop.png";
 // Importing Background images
-import hazeImg from '../../assets/images/haze.jpg';
-import rainImg from '../../assets/images/rain.jpg';
-import cloudImg from '../../assets/images/clouds.jpg';
-import snowImg from '../../assets/images/snow.jpg';
-import nightSkyImg from '../../assets/images/nightSky.jpg';
-import sunnyImg from '../../assets/images/sunny.jpg';
-import defaultImg from '../../assets/images/bgImg.jpg';
+import hazeImg from "../../assets/images/haze.jpg";
+import rainImg from "../../assets/images/rain.jpeg";
+import cloudImg from "../../assets/images/clouds.jpeg";
+import snowImg from "../../assets/images/snow.jpeg";
+import nightSkyImg from "../../assets/images/nightSky.jpg";
+import sunnyImg from "../../assets/images/sunny.jpg";
+import defaultImg from "../../assets/images/bgImg.jpeg";
 
 // React Loader
-import {css} from '@emotion/core';
-import ScaleLoader from 'react-spinners/ScaleLoader';
+import { css } from "@emotion/core";
+import ScaleLoader from "react-spinners/ScaleLoader";
 // React Carousel
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
-    breakpoint: {max: 2000, min: 1280},
+    breakpoint: { max: 2000, min: 1280 },
     items: 5,
   },
   LargeDesktop: {
     // the naming can be any, depends on you.
-    breakpoint: {max: 1280, min: 1000},
+    breakpoint: { max: 1280, min: 1000 },
     items: 4,
   },
   desktop: {
-    breakpoint: {max: 1000, min: 768},
+    breakpoint: { max: 1000, min: 768 },
     items: 3,
   },
   tablet: {
-    breakpoint: {max: 768, min: 520},
+    breakpoint: { max: 768, min: 520 },
     items: 2,
   },
   mobile: {
-    breakpoint: {max: 520, min: 0},
+    breakpoint: { max: 520, min: 0 },
     items: 2,
   },
 };
 
 function Index(props) {
   // Loader Styles
-  let color = '#111';
+  let color = "#111";
   let bgImg = defaultImg;
   const override = css`
     display: block;
@@ -84,41 +84,41 @@ function Index(props) {
   if (props.weatherDetails) {
     let wObj = props.weatherDetails;
     let city = `${wObj.name},${wObj.sys.country}`;
-    let date = format(new Date(), 'EEEE do MMMM');
-    let temp = `${Math.floor(wObj.main.temp)} ${'\u00b0'}`;
+    let date = format(new Date(), "EEEE do MMMM");
+    let temp = `${Math.floor(wObj.main.temp)} ${"\u00b0"}`;
     let weather_details =
       wObj.weather.description[0].toUpperCase() +
       wObj.weather.description.slice(1);
-    let minTemp = `${Math.floor(wObj.main.temp_min)} ${'\u00b0'}`;
-    let maxTemp = `${Math.floor(wObj.main.temp_max)} ${'\u00b0'}`;
-    let sunrise = format(new Date(wObj.sys.sunrise * 1000), 'K:mm a');
-    let sunset = format(new Date(wObj.sys.sunset * 1000), 'K:mm a');
+    let minTemp = `${Math.floor(wObj.main.temp_min)} ${"\u00b0"}`;
+    let maxTemp = `${Math.floor(wObj.main.temp_max)} ${"\u00b0"}`;
+    let sunrise = format(new Date(wObj.sys.sunrise * 1000), "K:mm a");
+    let sunset = format(new Date(wObj.sys.sunset * 1000), "K:mm a");
     let humidity = wObj.main.humidity;
     let wind = wObj.wind.speed;
-    if (weather_details.includes('Clear')) {
+    if (weather_details.includes("Clear")) {
       bgImg = sunnyImg;
       if (new Date().getTime() > new Date(wObj.sys.sunset * 1000).getTime()) {
         bgImg = nightSkyImg;
       }
     }
-    if (weather_details.includes('clouds')) {
+    if (weather_details.includes("clouds")) {
       bgImg = cloudImg;
     }
-    if (weather_details.includes('rain')) {
+    if (weather_details.includes("rain")) {
       bgImg = rainImg;
     }
-    if (weather_details.includes('Haze')) {
+    if (weather_details.includes("Haze")) {
       bgImg = hazeImg;
     }
-    if (weather_details.includes('snow')) {
+    if (weather_details.includes("snow")) {
       bgImg = snowImg;
     }
 
     let forecast_jsx = () => {
       let week = props.weatherDetails.daily;
       return week.map((day, index) => {
-        let date = format(new Date(day.dt * 1000), 'do MMMM');
-        let temp = `${Math.floor(day.temp.day)} ${'\u00b0'}`;
+        let date = format(new Date(day.dt * 1000), "do MMMM");
+        let temp = `${Math.floor(day.temp.day)} ${"\u00b0"}`;
         let rain_chance = Math.round(day.pop * 100);
         return (
           <div key={index} className={styles.forecast_single}>
@@ -138,7 +138,7 @@ function Index(props) {
                   alt="rain drop img"
                   className={styles.rainDropImg}
                   src={rainDropImg}
-                />{' '}
+                />{" "}
                 <span className={styles.forecast_weatherChance}>
                   {rain_chance} %
                 </span>

@@ -1,12 +1,12 @@
-import React from 'react';
-import {useState, useRef, useEffect} from 'react';
-import styles from '../../css/searchBar.module.scss';
-import {BiSearchAlt} from 'react-icons/bi';
-import defaultBg from '../../assets/images/bgImg.jpg';
-import iso3311a2 from 'iso-3166-1-alpha-2';
+import React from "react";
+import { useState, useRef, useEffect } from "react";
+import styles from "../../css/searchBar.module.scss";
+import { BiSearchAlt } from "react-icons/bi";
+import defaultBg from "../../assets/images/bgImg.jpeg";
+import iso3311a2 from "iso-3166-1-alpha-2";
 
 function Index(props) {
-  let [searchVal, setSearchVal] = useState('');
+  let [searchVal, setSearchVal] = useState("");
 
   // Google Places
   let autoCompleteInput = useRef();
@@ -15,9 +15,9 @@ function Index(props) {
     // eslint-disable-next-line
     autoComplete = new window.google.maps.places.Autocomplete(
       autoCompleteInput.current,
-      {types: ['(cities)']}
+      { types: ["(cities)"] }
     );
-    autoComplete.addListener('place_changed', handlePlaceChanged);
+    autoComplete.addListener("place_changed", handlePlaceChanged);
   }, []);
   // Places Input Change Listener
   let handlePlaceChanged = () => {
@@ -28,66 +28,72 @@ function Index(props) {
   //   Weather Search
   let search = async () => {
     props.setLoading(true);
-    let apiKey = '526d6c2fa8f55fc0657ee2a71c2dfc65';
-    // let cnt = '7';
-    let city = searchVal.slice(0, searchVal.indexOf(','));
+    let apiKey = "bfde028c134ffeee204f554bdc89e8a2";
+
+    let city = searchVal.slice(0, searchVal.indexOf(","));
     let country = searchVal
-      .slice(searchVal.lastIndexOf(',') + 1, searchVal.length)
+      .slice(searchVal.lastIndexOf(",") + 1, searchVal.length)
       .trim();
-    let countryCode = '';
+    let countryCode = "";
     // Google Places Already Provides Short Notation of Some Countries
     // -- > USA for united states of america
-    // That is why checking if lenght is greater then 3 then get the ISO alpha 2 code.
+    // That is why checking if length is greater then 3 then get the ISO alpha 2 code.
     if (country.length > 3) {
       countryCode = iso3311a2.getCode(country).toLowerCase();
     } else {
       countryCode = country.toLowerCase();
-      if (countryCode === 'usa') {
-        countryCode = 'us';
+      if (countryCode === "usa") {
+        countryCode = "us";
       }
     }
     console.log(city);
     console.log(countryCode);
     await fetch(
-      'https://api.openweathermap.org/data/2.5/weather?q=' +
+      "https://api.openweathermap.org/data/2.5/weather?q=" +
         `${city},${countryCode}` +
-        '&appid=' +
+        "&appid=" +
         apiKey +
-        '&units=metric'
-    ).then(async (response) => {
-      if (response.status === 404) {
-        let dataObj = {
-          errH1: 'Sorry, we found no match for your location',
-          errP: 'Try to search for another major city in the same area.',
-        };
-        props.setWeather(dataObj);
-        props.setLoading(false);
-        return;
-      }
-      if (response.status === 200) {
-        let data = await response.json();
-        let lat = data.coord.lat;
-        let lon = data.coord.lon;
-        let result = await fetch(
-          `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude={minutely,hourly,alerts}&units=metric&appid=` +
-            apiKey
-        );
-        let dailyResult = await result.json();
-        dailyResult.daily.pop();
-        let dataObj = {
-          main: data.main,
-          sys: data.sys,
-          weather: data.weather[0],
-          name: data.name,
-          wind: data.wind,
-          daily: dailyResult.daily,
-        };
-        setTimeout(() => {
+        "&units=metric"
+    )
+      .then(async (response) => {
+        console.log("Response --->", response);
+        if (response.status === 404) {
+          let dataObj = {
+            errH1: "Sorry, we found no match for your location",
+            errP: "Try to search for another major city in the same area.",
+          };
           props.setWeather(dataObj);
           props.setLoading(false);
-        }, 200);
-      }
-    });
+          return;
+        }
+        if (response.status === 200) {
+          let data = await response.json();
+          let lat = data.coord.lat;
+          let lon = data.coord.lon;
+          let result = await fetch(
+            `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude={minutely,hourly,alerts}&units=metric&appid=` +
+              apiKey
+          );
+          let dailyResult = await result.json();
+          dailyResult.daily.pop();
+          let dataObj = {
+            main: data.main,
+            sys: data.sys,
+            weather: data.weather[0],
+            name: data.name,
+            wind: data.wind,
+            daily: dailyResult.daily,
+          };
+          setTimeout(() => {
+            props.setWeather(dataObj);
+            props.setLoading(false);
+          }, 200);
+        }
+      })
+      .catch((err) => {
+        console.log("err --->", err);
+        props.setLoading(false);
+      });
   };
 
   // Enter to submit
@@ -99,7 +105,7 @@ function Index(props) {
 
   return (
     <div className={styles.searchBar_wrapper}>
-      <style>{`body {background:url(${defaultBg}) no-repeat center/cover fixed }`}</style>
+      {/* <style>{`body {background:url(${defaultBg}) no-repeat center/cover fixed }`}</style> */}
       <div className={styles.searchBar}>
         <input
           value={searchVal}
