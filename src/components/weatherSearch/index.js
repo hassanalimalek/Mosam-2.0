@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import styles from "../../css/searchBar.module.scss";
 import { BiSearchAlt } from "react-icons/bi";
 import iso3311a2 from "iso-3166-1-alpha-2";
-// import defaultBg from "../../assets/images/bgImg.jpeg";
+import defaultBg from "../../assets/images/bgImg.jpeg";
 
 function Index(props) {
   let [searchVal, setSearchVal] = useState("");
@@ -103,7 +103,7 @@ function Index(props) {
 
   return (
     <div className={styles.searchBar_wrapper}>
-      {/* <style>{`body {background:url(${defaultBg}) no-repeat center/cover fixed }`}</style> */}
+      <style>{`body {background:url(${defaultBg}) no-repeat center/cover fixed }`}</style>
       <div className={styles.searchBar}>
         <input
           value={searchVal}
