@@ -1,19 +1,19 @@
-import './App.css';
-import {useState} from 'react';
-import Header from './components/header';
-import WeatherSearch from './components/weatherSearch';
-import WeatherDetails from './components/weatherDetails';
+import "./App.css";
+import { useState } from "react";
+import Header from "./components/header";
+import WeatherSearch from "./components/weatherSearch";
+import WeatherDetails from "./components/weatherDetails";
 
-import {css} from '@emotion/core';
-import BarLoader from 'react-spinners/BarLoader';
+import { css } from "@emotion/core";
+import BarLoader from "react-spinners/BarLoader";
 
 function App() {
-  let [weatherDetails, setWeatherDetails] = useState('');
+  let [weatherDetails, setWeatherDetails] = useState("");
   let [loading, setLoading] = useState(false);
 
   // Initial Loader
   let [initialloader, setInitialLoader] = useState(true);
-  let color = '#111';
+  let color = "#111";
   const override = css`
     display: block;
     color: black;
