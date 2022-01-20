@@ -2,8 +2,8 @@ import React from "react";
 import { useState, useRef, useEffect } from "react";
 import styles from "../../css/searchBar.module.scss";
 import { BiSearchAlt } from "react-icons/bi";
-// import defaultBg from "../../assets/images/bgImg.jpeg";
 import iso3311a2 from "iso-3166-1-alpha-2";
+// import defaultBg from "../../assets/images/bgImg.jpeg";
 
 function Index(props) {
   let [searchVal, setSearchVal] = useState("");
@@ -46,8 +46,6 @@ function Index(props) {
         countryCode = "us";
       }
     }
-    console.log(city);
-    console.log(countryCode);
     await fetch(
       "https://api.openweathermap.org/data/2.5/weather?q=" +
         `${city},${countryCode}` +
